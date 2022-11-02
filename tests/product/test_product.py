@@ -11,10 +11,10 @@ def test_cria_produto():
         "1234567",
         "ao abrigo de luz",
     )
-    assert type(product.id) == int
-    assert type(product.nome_do_produto) == str
-    assert type(product.nome_da_empresa) == str
-    assert type(product.data_de_fabricacao) == str
-    assert type(product.data_de_validade) == str
-    assert type(product.numero_de_serie) == str
-    assert type(product.instrucoes_de_armazenamento) == str
+    assert product.id == 9
+    assert product.nome_do_produto == 'farinha'
+    assert product.nome_da_empresa == 'Farinini'
+    assert product.data_de_fabricacao == '01-05-2021'
+    assert product.data_de_validade == '02-06-2023'
+    assert product.numero_de_serie == '1234567'
+    assert product.instrucoes_de_armazenamento == 'ao abrigo de luz'
