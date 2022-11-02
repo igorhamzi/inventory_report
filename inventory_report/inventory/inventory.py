@@ -17,21 +17,13 @@ class inventory:
             with open(path, 'r') as file:
                 list_of_products = json.load(file)
 
-        print(list_of_products)
-
         if inventory == 'simples':
-            return SimpleReport.generate(list_of_products)
+            return print(SimpleReport.generate(list_of_products))
         elif inventory == 'completo':
-            return CompleteReport.generate(list_of_products)
+            return print(CompleteReport.generate(list_of_products))
 
 
 if __name__ == '__main__':
-    inventory.import_data(
-        '/home/igor/trybe/projetos-19'
-        '/cs-modulo/inventory-report'
-        '/sd-019-c-inventory-report'
-        '/inventory_report/data/inventory.json',
-        'completo'
-    )
+    inventory.import_data('inventory_report/data/inventory.csv', 'simples')
 
     print(__name__)
