@@ -23,10 +23,6 @@ class SimpleReport:
 
         company_more_products = Counter(companies).most_common(1)[0][0]
 
-        print(oldest_manufacturing_date)
-        print(closest_expiration_date)
-        print(company_more_products)
-
         return (
             f"Data de fabricação mais antiga: {oldest_manufacturing_date}\n"
             f"Data de validade mais próxima: {closest_expiration_date}\n"
