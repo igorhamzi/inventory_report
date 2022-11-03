@@ -2,9 +2,10 @@ from csv import DictReader
 from ..reports.simple_report import SimpleReport
 from ..reports.complete_report import CompleteReport
 import json
+import xmltodict
 
 
-class inventory:
+class Inventory:
 
     @classmethod
     def import_data(cls, path, inventory):
@@ -16,14 +17,18 @@ class inventory:
         elif file_type == 'json':
             with open(path, 'r') as file:
                 list_of_products = json.load(file)
+        elif file_type == '.xml':
+            with open(path, 'r') as file:
+                read_list = xmltodict.parse(file.read())["dataset"]["record"]
+                list_of_products = read_list
 
         if inventory == 'simples':
-            return print(SimpleReport.generate(list_of_products))
+            return SimpleReport.generate(list_of_products)
         elif inventory == 'completo':
-            return print(CompleteReport.generate(list_of_products))
+            return CompleteReport.generate(list_of_products)
 
 
 if __name__ == '__main__':
-    inventory.import_data('inventory_report/data/inventory.csv', 'simples')
+    Inventory.import_data('inventory_report/data/inventory.xml', 'completo')
 
     print(__name__)
