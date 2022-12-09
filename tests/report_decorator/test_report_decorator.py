@@ -2,26 +2,27 @@ from inventory_report.reports.colored_report import ColoredReport
 from inventory_report.reports.simple_report import SimpleReport
 
 
+my_product = [
+        {
+            "id": "1",
+            "nome_do_produto": "Pilha AA",
+            "nome_da_empresa": "Panasonic",
+            "data_de_fabricacao": "2020-01-15",
+            "data_de_validade": "2025-01-15",
+            "numero_de_serie": "xpto12345",
+            "instrucoes_de_armazenamento": "Manter em local seco"
+        }
+    ]
+
+
 def test_decorar_relatorio():
-    product_mock = [{
-       "id": 13,
-       "nome_do_produto": "Teia do miranha",
-       "nome_da_empresa": "Stark-Inc",
-       "data_de_fabricacao": "04-11-2022",
-       "data_de_validade": "01-11-2020",
-       "numero_de_serie": "1313",
-       "instrucoes_de_armazenamento": "Este lado para cima"
-     }]
+    colored_report = ColoredReport(SimpleReport).generate(my_product)
 
-    expected_colored = (
+    assert colored_report == (
         "\033[32mData de fabricação mais antiga:\033[0m"
-        " \033[36m04-11-2022\033[0m\n"
+        " \033[36m2020-01-15\033[0m\n"
         "\033[32mData de validade mais próxima:\033[0m"
-        " \033[36m01-11-2020\033[0m\n"
+        " \033[36m2025-01-15\033[0m\n"
         "\033[32mEmpresa com mais produtos:\033[0m"
-        " \033[31mStark-Inc\033[0m"
-        )
-
-    coloredReport = ColoredReport(SimpleReport)
-
-    assert expected_colored == coloredReport.generate(product_mock)
+        " \033[31mPanasonic\033[0m"
+    )
